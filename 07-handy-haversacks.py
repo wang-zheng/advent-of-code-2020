@@ -10,14 +10,14 @@ def parse(line):
 rules = {}
 
 
-def recursive_check(mem, bag, gold="shiny gold"):
+def recursive_check(mem, bag):
     if bag in mem.keys():
         return mem[bag]
     if bag == "shiny gold":
         return True
     for subbag in rules[bag]:
         subbag = re.sub("\d+", "", subbag).strip()
-        if recursive_check(mem, subbag, gold):
+        if recursive_check(mem, subbag):
             mem[bag] = True
             return True
     mem[bag] = False
