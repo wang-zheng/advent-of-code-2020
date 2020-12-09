@@ -32,7 +32,8 @@ with open(filepath) as fp:
 visited = []
 print("Part One:", execute_recursive(program, 0, visited)[0])
 
-for i, line in enumerate(program):
+for i in visited:
+    line = program[i]
     if line[:3] == "nop":
         program[i] = line.replace("nop", "jmp")
     elif line[:3] == "jmp":
@@ -40,8 +41,8 @@ for i, line in enumerate(program):
     else:
         continue
 
-    visited = []
-    ans = execute_recursive(program, 0, visited)
+    fresh_visited = []
+    ans = execute_recursive(program, 0, fresh_visited)
     if ans[1]:
         print("Part Two:", ans[0])
         break
