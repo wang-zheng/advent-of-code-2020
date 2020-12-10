@@ -43,4 +43,4 @@ with open(filepath) as fp:
 
 part_1 = find_invalid(program)
 print("Part One:", part_1)
-print("Part One:", find_set(program, part_1))
+print("Part Two:", find_set(program, part_1))
