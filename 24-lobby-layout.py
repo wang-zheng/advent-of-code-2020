@@ -56,9 +56,10 @@ def neighbors(coord):
     ]
 
 
+check = [coord for point in flipped.keys() for coord in neighbors(point)]
+check = set(check + list(flipped.keys()))
+
 for day in range(100):
-    check = [coord for point in flipped.keys() for coord in neighbors(point)]
-    check = list(set(check + list(flipped.keys())))
     flip = []
     for point in check:
         count = [flipped[x] for x in neighbors(point)].count(True)
@@ -69,5 +70,7 @@ for day in range(100):
 
     for point in flip:
         flipped[point] = not flipped[point]
+
+    [check.add(x) for point in flip for x in neighbors(point) if flipped[point]]
 ans = list(flipped.values()).count(True)
 print("Part Two:", ans)
